@@ -1,12 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import AppRouter from './Router/Router'
-
-import { injectGlobal } from 'styled-components'
+import configStore from './Store'
+import Http from '@/Http'
+import { Provider } from 'react-redux'
+import { registerUser } from './Store/Actions'
 // fetch polyfill
 import 'whatwg-fetch'
+import { injectGlobal } from 'styled-components'
 
-// inject css reset styles
+// initialize store
+const store = configStore()
+const token = localStorage.getItem('token')
+export const http = new Http(token)
+store.dispatch(registerUser(token))
+
+// inject css global styles
 injectGlobal`
   * {
     box-sizing: border-box;
@@ -27,5 +36,10 @@ injectGlobal`
     text-decoration: none;
   }
 `
+
 // mount the react app via the router
-ReactDOM.render(<AppRouter />, document.getElementById('app'))
+ReactDOM.render(
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>,
+  document.getElementById('app'))

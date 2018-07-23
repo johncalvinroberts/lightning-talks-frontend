@@ -10,6 +10,8 @@ module.exports = {
         "object-curly-spacing": [2, "always"]
     },
     "globals": {
-        "fetch": true
+        "fetch": true,
+        "Headers": true,
+        "localStorage": true
     }
 };
