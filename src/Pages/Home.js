@@ -1,17 +1,29 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { VerticalFlex } from '@/Elements'
+import { connect } from 'react-redux'
+import Nav from '@/Elements/Nav'
 
+@connect(
+  state => ({ user: state.auth, posts: state.posts })
+)
 export default class Home extends Component {
-  state = {
-    posts: []
+  componentDidMount () {
+    console.log('yoooiu get posts')
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    console.log(nextState)
   }
 
   render () {
     return (
       <Fragment>
-        <div>Yooo this is HOME. hehe.</div>
-        <Link to="post/something">here baby</Link>
-        <Link to="login">Login</Link>
+        <Nav/>
+        <VerticalFlex padding="3rem 10px 10px 10px">
+          <div>
+            yooo..dang
+          </div>
+        </VerticalFlex>
       </Fragment>
     )
   }

@@ -5,6 +5,7 @@ import configStore from './Store'
 import Http from '@/Http'
 import { Provider } from 'react-redux'
 import { registerUser } from './Store/Actions'
+import { black } from '@/Utilities'
 // fetch polyfill
 import 'whatwg-fetch'
 import { injectGlobal } from 'styled-components'
@@ -27,10 +28,11 @@ injectGlobal`
   }
   body {
     line-height: 1.6;
-    color: #111;
+    color: ${black};
     font-size: 16px;
     font-weight: 400;
     font-family: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    min-height: 100vh;
   }  
   a {
     text-decoration: none;
