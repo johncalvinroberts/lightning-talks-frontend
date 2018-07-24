@@ -9,6 +9,7 @@ export default class Http {
     this.defaultHeader = { 'Content-Type': 'application/json' }
     this.baseUrl = 'localhost:3005'
   }
+
   fetch (url, data = {}, method = GET) {
     const options = {
       headers: new Headers({
@@ -29,11 +30,9 @@ export default class Http {
   submitRegistration (data) {
     return this.fetch('/auth/register', data, POST)
   }
-
   submitLogin (data) {
     return this.fetch('/auth/login', data, POST)
   }
-
   getProfile () {
     return this.fetch('/auth/profile', {}, GET)
   }
@@ -42,11 +41,9 @@ export default class Http {
   getPosts ({ page }) {
     return this.fetch(`/posts?page=${page}`, {}, GET)
   }
-
   getPostBySlug ({ slug }) {
     return this.fetch(`/posts/${slug}`, {}, GET)
   }
-
   createPost (data) {
     return this.fetch(`/posts`, data, POST)
   }

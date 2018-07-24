@@ -1,6 +1,7 @@
 export const LOGIN = 'LOGIN'
 export const REGISTER = 'REGISTER'
-export const FETCH_PROFILE = 'FETCH_PROFILE'
 export const LOGOUT = 'LOGOUT'
 export const LOAD_DATA_FAILURE = 'LOAD_DATA_FAILURE'
 export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO'
+export const BEGIN_AUTH_LOADING = 'BEGIN_AUTH_LOADING'
+export const END_AUTH_LOADING = 'END_AUTH_LOADING'
