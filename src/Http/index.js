@@ -3,11 +3,16 @@ const POST = 'POST'
 const PUT = 'PUT'
 const DELETE = 'DELETE'
 
-export default class Http {
+class Http {
   constructor (token) {
     this.token = token
+    console.log('seeeeeting in constructor')
     this.defaultHeader = { 'Content-Type': 'application/json' }
-    this.baseUrl = 'localhost:3005'
+    this.baseUrl = 'http://localhost:3005'
+  }
+
+  setToken (token) {
+    this.token = token
   }
 
   fetch (url, data = {}, method = GET) {
@@ -56,3 +61,4 @@ export default class Http {
     return this.fetch(`/api/posts/${slug}/upvote`, {}, DELETE)
   }
 }
+export default new Http()

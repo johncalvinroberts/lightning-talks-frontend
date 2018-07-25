@@ -13,7 +13,7 @@ import { injectGlobal } from 'styled-components'
 // initialize store
 const store = configStore()
 const token = localStorage.getItem('token')
-export const http = new Http(token)
+export const http = Http.setToken(token)
 store.dispatch(registerUser(token))
 
 // inject css global styles

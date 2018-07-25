@@ -46,8 +46,10 @@ export const fetchProfile = () => {
 }
 // login
 export const submitLogin = ({ username, password }) => {
+  console.log('heeeere')
   return async dispatch => {
     try {
+      console.log('yep in here too lmao')
       dispatch(beginAuthLoading())
       await http.submitLogin({ username, password })
       dispatch(endAuthLoading())
