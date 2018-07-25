@@ -18,10 +18,12 @@ export const VerticalFlex = styled.div`
   width: 100%;
   height: ${props => props.height};
   align-items: center;
+  justify-content: ${props => props.justifyContent}
   padding: ${props => props.padding};
   flex-wrap: wrap;
 `
 VerticalFlex.defaultProps = {
   height: '100vh',
+  justifyContent: 'space-around',
   padding: '0'
 }

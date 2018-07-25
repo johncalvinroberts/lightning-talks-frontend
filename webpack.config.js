@@ -6,7 +6,9 @@ module.exports = {
   devtool: "sourcemap",
   devServer: {
     contentBase: [path.resolve(__dirname, "src")],
-    overlay: true
+    overlay: true,
+    publicPath: '/',
+    historyApiFallback: true    
   },
   watch: true,
   watchOptions: {

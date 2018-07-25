@@ -6,6 +6,7 @@ export const green = '#84FAB0'
 export const lightGrey = '#E4E4E4'
 export const darkGrey = '#3F3F3F'
 export const yellow = '#FEA14C'
+export const white = '#FFFFFF'
 
 export default {
   alabaster,
@@ -15,5 +16,6 @@ export default {
   green,
   lightGrey,
   darkGrey,
-  yellow
+  yellow,
+  white
 }
