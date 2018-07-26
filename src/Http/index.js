@@ -1,12 +1,10 @@
 const GET = 'GET'
 const POST = 'POST'
-const PUT = 'PUT'
+const PUT = 'PUT' // eslint-disable-line
 const DELETE = 'DELETE'
 
 class Http {
-  constructor (token) {
-    this.token = token
-    console.log('seeeeeting in constructor')
+  constructor () {
     this.defaultHeader = { 'Content-Type': 'application/json' }
     this.baseUrl = 'http://localhost:3005'
   }
@@ -24,12 +22,22 @@ class Http {
       method: method,
       credentials: 'include'
     }
-    return fetch(this.baseUrl + url, options)
-      .then(async (response) => {
+    if (method !== GET) {
+      options.body = JSON.stringify(data)
+    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(this.baseUrl + url, options)
         const data = await response.json()
-        return data
-      })
-      .catch(error => console.log(error) || error)
+        if (!response.ok) {
+          throw new Error(data.message)
+        } else {
+          resolve(data)
+        }
+      } catch (error) {
+        reject(error)
+      }
+    })
   }
   // user requests
   submitRegistration (data) {

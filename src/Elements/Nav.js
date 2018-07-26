@@ -43,10 +43,12 @@ const LoginCell = styled.div`
   display: flex;
   justify-content: flex-end;  
 `
+
 @connect(
   state => ({ user: state.auth }),
   dispatch => logout)
-class Nav extends Component {
+@withRouter
+export default class Nav extends Component {
   handleLogout = () => {
     return logout()
   }
@@ -55,7 +57,7 @@ class Nav extends Component {
     return (
       <NavBase>
         <NavItem to='/'>
-          <Icon name="lightning" color={yellow}/>
+          <Icon name="lightning" color={yellow} width="3rem" height="3rem"/>
           Latest
           <NavSeperator/>
         </NavItem>
@@ -66,14 +68,12 @@ class Nav extends Component {
         <LoginCell>
           {!this.props.user.loggedIn && (
             <NavItem to='/login'>
-            Login
-              <NavSeperator />
+              Login <Icon name="login" color={alabaster}/>
             </NavItem>
           )}
           {this.props.user.loggedIn && (
-            <NavItem onClick={ this.handleLogout }>
-              Logout
-              <NavSeperator />
+            <NavItem onClick={ this.handleLogout } to='/profile'>
+              account <Icon name="account" color={alabaster} />
             </NavItem>
           )}
         </LoginCell>
@@ -81,5 +81,3 @@ class Nav extends Component {
     )
   }
 }
-
-export default withRouter(Nav)

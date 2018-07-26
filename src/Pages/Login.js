@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { Page, Card, VerticalFlex, Icon, Form, SubmitButton } from '@/Elements'
 import { blue, yellow, white } from '@/Utilities'
-import { Link } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { submitLogin } from '@/Store/Actions'
+import { submitLogin, submitRegistration } from '@/Store/Actions'
 
 const LoginHeader = styled.h1`
   color: ${white};
@@ -24,28 +23,18 @@ const LoginCard = styled(Card)`
   display: block;
   margin-bottom: 1rem;
 `
-// const mapDispatchToProps = dispatch => {
-//   return { actions: bindActionCreators(submitLogin, dispatch) }
-// }
 
-const mapDispatchToProps = { submitLogin }
+const mapDispatchToProps = { submitLogin, submitRegistration }
 
 @connect(state => ({ user: state.auth }), mapDispatchToProps)
+@withRouter
 export default class Login extends Component {
   state = {
     loginUsername: null,
     loginPassword: null,
     registerUsername: null,
     registerPassword: null,
-    validations: {
-      username: value => {
-        return value.length > 5// TODO: sanitize, regex, etc.
-      },
-      password: value => {
-        return value.length > 8
-      }
-    },
-    formErrors: []
+    redirectToReferrer: false
   }
 
   handleLogin = async (e) => {
@@ -54,12 +43,17 @@ export default class Login extends Component {
       username: this.state.loginUsername,
       password: this.state.loginPassword
     }
-    this.props.submitLogin(payload)
+    await this.props.submitLogin(payload)
+    this.checkForRedirect()
   }
 
   handleRegister = async (e) => {
     e.preventDefault()
-    console.log(e)
+    const payload = {
+      username: this.state.loginUsername,
+      password: this.state.loginPassword
+    }
+    this.props.submitRegistration(payload)
   }
 
   handleFormChange = (e) => {
@@ -68,16 +62,32 @@ export default class Login extends Component {
     })
   }
 
+  checkForRedirect = () => {
+    if (this.props.user.loggedIn) {
+      this.setState({ redirectToReferrer: true })
+    }
+  }
+
+  componentDidMount = () => {
+    this.checkForRedirect()
+  }
+
   shouldComponentUpdate = (nextProps, nextState) => {
     // TODO: validate form inputs here. if value !== null && !validated
     return nextState
   }
 
   render () {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+
+    if (redirectToReferrer) {
+      return <Redirect to={from} />
+    }
     return (
       <Page backgroundColor={blue} padding="0 0.3rem 0.3rem 0.3rem">
         <Link to='/'>
-          <Icon name="lightning" color={yellow} />
+          <Icon name="lightning" color={yellow} width="3rem" height="3rem"/>
         </Link>
         <LoginHeader>Lightning Talks</LoginHeader>
         <LoginSubheader>Pitch, preach, pretend</LoginSubheader>

@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AppRouter from './Router/Router'
 import configStore from './Store'
-import Http from '@/Http'
 import { Provider } from 'react-redux'
 import { registerUser } from './Store/Actions'
 import { black } from '@/Utilities'
@@ -12,9 +11,7 @@ import { injectGlobal } from 'styled-components'
 
 // initialize store
 const store = configStore()
-const token = localStorage.getItem('token')
-export const http = Http.setToken(token)
-store.dispatch(registerUser(token))
+store.dispatch(registerUser())
 
 // inject css global styles
 injectGlobal`

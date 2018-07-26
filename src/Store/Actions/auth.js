@@ -25,7 +25,9 @@ const login = () => {
 // registerUser: for handling initial load of user. for returning users
 export const registerUser = (token) => {
   return dispatch => {
-    if (token) {
+    const token = localStorage.getItem('lightningToken')
+    if (token && typeof token !== 'undefined') {
+      http.setToken(token)
       dispatch(fetchProfile())
       dispatch(login())
     }
@@ -40,22 +42,22 @@ export const fetchProfile = () => {
       dispatch(endAuthLoading())
       dispatch(receiveUserInfo(userInfo))
     } catch (error) {
-      dispatch({ type: LOAD_DATA_FAILURE })
+      dispatch({ type: LOAD_DATA_FAILURE, error })
     }
   }
 }
 // login
 export const submitLogin = ({ username, password }) => {
-  console.log('heeeere')
   return async dispatch => {
     try {
-      console.log('yep in here too lmao')
       dispatch(beginAuthLoading())
-      await http.submitLogin({ username, password })
+      const { token } = await http.submitLogin({ username, password })
+      http.setToken(token)
+      localStorage.setItem('lightningToken', token)
       dispatch(endAuthLoading())
       dispatch(login())
     } catch (error) {
-      dispatch({ type: LOAD_DATA_FAILURE })
+      dispatch({ type: LOAD_DATA_FAILURE, error })
     }
   }
 }

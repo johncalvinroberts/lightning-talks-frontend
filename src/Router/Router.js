@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Home, Post, Submit, Login, NotFound } from '@/pages'
+import { Home, Post, Submit, Login, Profile, NotFound } from '@/pages'
 
 export default class AppRouter extends Component {
   render () {
@@ -11,6 +11,8 @@ export default class AppRouter extends Component {
           <Route path="/post/:slug" component={Post} />
           <Route path="/submit" component={Submit} />
           <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/profile/:slug" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </Router>
