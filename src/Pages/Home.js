@@ -29,7 +29,7 @@ export default class Home extends Component {
           <PageInner>
             <List>
               {
-                this.props.posts.posts.map((post, index) => <PostListItem post={post} key={index}/>)
+                this.props.posts.posts.map((post, index) => <PostListItem post={post} key={index} rank={index + 1}/>)
               }
             </List>
           </PageInner>

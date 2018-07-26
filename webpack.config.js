@@ -3,6 +3,10 @@ const path = require('path')
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  output: {
+    filename: "[hash].bundle.js",
+    publicPath: "/"  // Notice this line 
+  },  
   devtool: "sourcemap",
   devServer: {
     contentBase: [path.resolve(__dirname, "src")],
