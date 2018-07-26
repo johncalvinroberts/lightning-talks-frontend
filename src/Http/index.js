@@ -1,3 +1,4 @@
+import store from '@/Store/index'
 const GET = 'GET'
 const POST = 'POST'
 const PUT = 'PUT' // eslint-disable-line
@@ -51,14 +52,15 @@ class Http {
   }
 
   // posts requests
-  getPosts ({ page }) {
-    return this.fetch(`/posts?page=${page}`, {}, GET)
+  getPosts () {
+    const { posts: { page } } = store.getState()
+    return this.fetch(`/api/posts?page=${page}`, {}, GET)
   }
-  getPostBySlug ({ slug }) {
-    return this.fetch(`/posts/${slug}`, {}, GET)
+  getPostBySlug (slug) {
+    return this.fetch(`/api/posts/${slug}`, {}, GET)
   }
   createPost (data) {
-    return this.fetch(`/posts`, data, POST)
+    return this.fetch(`/api/posts`, data, POST)
   }
 
   // votes requests

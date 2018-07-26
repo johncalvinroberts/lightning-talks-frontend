@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import AppRouter from './Router/Router'
-import configStore from './Store'
+import store from './Store'
 import { Provider } from 'react-redux'
 import { registerUser } from './Store/Actions'
 import { black } from '@/Utilities'
@@ -10,7 +10,6 @@ import 'whatwg-fetch'
 import { injectGlobal } from 'styled-components'
 
 // initialize store
-const store = configStore()
 store.dispatch(registerUser())
 
 // inject css global styles

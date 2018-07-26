@@ -11,3 +11,9 @@ Page.defaultProps = {
   backgroundColor: alabaster,
   padding: '0.3rem'
 }
+
+export const PageInner = styled.div`
+    padding-top:75px;
+    max-width: 750px;
+    margin: 0 auto;
+`

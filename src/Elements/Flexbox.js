@@ -16,14 +16,14 @@ HorizontalFlex.defaultProps = {
 export const VerticalFlex = styled.div`
   display: flex;
   width: 100%;
-  height: ${props => props.height};
+  min-height: ${props => props.minHeight};
   align-items: center;
   justify-content: ${props => props.justifyContent}
   padding: ${props => props.padding};
   flex-wrap: wrap;
 `
 VerticalFlex.defaultProps = {
-  height: '100vh',
+  minHeight: '100vh',
   justifyContent: 'space-around',
   padding: '0'
 }

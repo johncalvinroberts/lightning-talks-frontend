@@ -28,8 +28,8 @@ export const registerUser = (token) => {
     const token = localStorage.getItem('lightningToken')
     if (token && typeof token !== 'undefined') {
       http.setToken(token)
-      dispatch(fetchProfile())
       dispatch(login())
+      dispatch(fetchProfile())
     }
   }
 }
@@ -56,6 +56,7 @@ export const submitLogin = ({ username, password }) => {
       localStorage.setItem('lightningToken', token)
       dispatch(endAuthLoading())
       dispatch(login())
+      dispatch(fetchProfile())
     } catch (error) {
       dispatch({ type: LOAD_DATA_FAILURE, error })
     }
