@@ -66,7 +66,7 @@ export default class PostListItem extends Component {
   }
 
   calculateLiked = () => {
-    const liked = this.props.upvotes.includes(this.props.post.slug)
+    const liked = this.props.upvotes && this.props.upvotes.includes(this.props.post.slug)
     this.setState({ liked })
   }
 

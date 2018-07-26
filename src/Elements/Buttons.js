@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { darkGrey, transition } from '@/Utilities'
+import { darkGrey, blue, white, transition } from '@/Utilities'
 
 export const SubmitButton = styled.button`
   ${transition({ length: '0.2s' })}
@@ -15,5 +15,21 @@ export const SubmitButton = styled.button`
   &:focus {
     outline: 0 none;
     border-width: 2px;
+  }
+`
+export const ScrollButton = styled(SubmitButton)`
+  background-color: ${blue};
+  color: ${white};
+  font-size: 16px;
+  display: block;
+  float: unset;
+  border-color: ${blue};
+  box-shadow: 2px 2px 0 ${darkGrey};
+  margin: 0 auto;
+  margin-top: 20px;
+  &:hover{
+    background-color: ${white};    
+    color: ${blue};
+    box-shadow: 3px 3px 0 ${blue};
   }
 `

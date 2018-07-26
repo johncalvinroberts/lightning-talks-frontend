@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Page, Card, VerticalFlex, Icon, Form, SubmitButton } from '@/Elements'
+import { Page, Card, VerticalFlex, Icon, Form, FormTitle, SubmitButton } from '@/Elements'
 import { blue, yellow, white } from '@/Utilities'
 import styled from 'styled-components'
 import { Link, withRouter, Redirect } from 'react-router-dom'
@@ -14,10 +14,6 @@ const LoginHeader = styled.h1`
 const LoginSubheader = styled.p`
   color: ${white};
   text-align: center;
-`
-
-const FormTitle = styled.h3`
-  margin: 0;
 `
 const LoginCard = styled(Card)`
   display: block;
@@ -115,7 +111,7 @@ export default class Login extends Component {
                     autoComplete="off"
                     required />
                 </div>
-                <SubmitButton type="submit">submit</SubmitButton>
+                <SubmitButton type="submit">Log in</SubmitButton>
               </Form>
             </LoginCard>
             <LoginCard>
@@ -140,7 +136,7 @@ export default class Login extends Component {
                     autoComplete="off"
                     required />
                 </div>
-                <SubmitButton type="submit">submit</SubmitButton>
+                <SubmitButton type="submit">create account</SubmitButton>
               </Form>
             </LoginCard>
           </div>

@@ -1,9 +1,17 @@
-import { BEGIN_FETCH_POSTS, APPEND_POSTS, BEGIN_FETCH_SINGLE_POST, RECEIVE_SINGLE_POST } from '../Types'
+import {
+  BEGIN_FETCH_POSTS,
+  APPEND_POSTS,
+  BEGIN_FETCH_SINGLE_POST,
+  RECEIVE_SINGLE_POST,
+  BEGIN_SUBMIT_POST,
+  SUBMIT_SUCCESS,
+  SUBMIT_FAIL } from '../Types'
 
 export default function posts (state = {
   loading: true,
   page: 1,
-  posts: []
+  posts: [],
+  submitting: false
 }, action) {
   switch (action.type) {
     case BEGIN_FETCH_POSTS:
@@ -21,6 +29,22 @@ export default function posts (state = {
     case RECEIVE_SINGLE_POST:
     // TODO: append post detail to item in posts state here
       return { ...state }
+    case BEGIN_SUBMIT_POST:
+      return {
+        submitting: true,
+        ...state
+      }
+    case SUBMIT_SUCCESS:
+      return {
+        submitting: false,
+        posts: [],
+        ...state
+      }
+    case SUBMIT_FAIL:
+      return {
+        submitting: false,
+        ...state
+      }
     default:
       return { ...state }
   }

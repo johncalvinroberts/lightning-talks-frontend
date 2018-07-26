@@ -1,5 +1,12 @@
 import http from '@/Http'
-import { BEGIN_FETCH_POSTS, APPEND_POSTS, BEGIN_FETCH_SINGLE_POST, RECEIVE_SINGLE_POST } from '../Types'
+import {
+  BEGIN_FETCH_POSTS,
+  APPEND_POSTS,
+  BEGIN_FETCH_SINGLE_POST,
+  RECEIVE_SINGLE_POST,
+  BEGIN_SUBMIT_POST,
+  SUBMIT_SUCCESS,
+  SUBMIT_FAIL } from '../Types'
 
 const beginFetch = () => {
   return { type: BEGIN_FETCH_POSTS }
@@ -30,5 +37,29 @@ export const getPosts = () => {
     dispatch(beginFetch())
     const { posts } = await http.getPosts()
     dispatch(appendPosts(posts))
+  }
+}
+
+const beginSubmit = () => {
+  return { type: BEGIN_SUBMIT_POST }
+}
+
+const submitSuccess = () => {
+  return { type: SUBMIT_SUCCESS }
+}
+
+const submitFail = () => {
+  return { type: SUBMIT_FAIL }
+}
+
+export const submitPost = (payload) => {
+  return async dispatch => {
+    dispatch(beginSubmit())
+    try {
+      await http.createPost({ post: payload })
+      dispatch(submitSuccess())
+    } catch (error) {
+      dispatch(submitFail())
+    }
   }
 }

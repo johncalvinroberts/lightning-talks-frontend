@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Page, PageInner, Nav, List, PostListItem } from '@/Elements'
+import { Page, PageInner, Nav, List, PostListItem, ScrollButton } from '@/Elements'
 import { alabaster } from '@/Utilities'
 import { connect } from 'react-redux'
 import { getPosts } from '@/Store/Actions'
@@ -17,14 +17,11 @@ export default class Home extends Component {
     }
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return true
-  }
-
   render () {
     return (
       <Fragment>
-        <Page backgroundColor={alabaster} padding="3rem 0.3rem 0.3rem 0.3rem">
+        <Page backgroundColor={alabaster}
+          padding="1rem 0.3rem 1rem 0.3rem">
           <Nav/>
           <PageInner>
             <List>
@@ -32,6 +29,7 @@ export default class Home extends Component {
                 this.props.posts.posts.map((post, index) => <PostListItem post={post} key={index} rank={index + 1}/>)
               }
             </List>
+            <ScrollButton onClick={this.props.getPosts}>Load more posts</ScrollButton>
           </PageInner>
         </Page>
       </Fragment>

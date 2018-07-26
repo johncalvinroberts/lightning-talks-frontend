@@ -10,7 +10,7 @@ export const Form = styled.form`
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
-  input {
+  input, textarea {
     width: 100%;
     background-color: ${lightGrey};
     cursor: text;
@@ -26,7 +26,13 @@ export const Form = styled.form`
       border-color: ${darkGrey}
     }
   }
+  textarea {
+    height: 100px;
+    resize: none;
+  }
 `
 
-export const InputBox = styled.input`
+export const FormTitle = styled.h3`
+  margin: 0;
+  margin-bottom: 10px;
 `
