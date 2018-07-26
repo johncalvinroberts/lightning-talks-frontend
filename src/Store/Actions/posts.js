@@ -4,6 +4,8 @@ import {
   APPEND_POSTS,
   BEGIN_FETCH_SINGLE_POST,
   RECEIVE_SINGLE_POST,
+  BEGIN_FETCH_POPULAR,
+  APPEND_POPULAR,
   BEGIN_SUBMIT_POST,
   SUBMIT_SUCCESS,
   SUBMIT_FAIL } from '../Types'
@@ -39,7 +41,25 @@ export const getPosts = () => {
     dispatch(appendPosts(posts))
   }
 }
+// popular posts
 
+const beginFetchPopular = () => {
+  return { type: BEGIN_FETCH_POPULAR }
+}
+
+const appendPopular = (posts) => {
+  return { type: APPEND_POPULAR, posts }
+}
+
+export const getPopularPosts = () => {
+  return async dispatch => {
+    dispatch(beginFetchPopular())
+    const { posts } = await http.getPopularPosts()
+    dispatch(appendPopular(posts))
+  }
+}
+
+// post submission
 const beginSubmit = () => {
   return { type: BEGIN_SUBMIT_POST }
 }

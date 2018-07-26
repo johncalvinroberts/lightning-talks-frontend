@@ -3,11 +3,11 @@ import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '@/Store/Actions'
 import styled from 'styled-components'
-import { fixed, yellow, alabaster, blue, transition } from '@/Utilities'
+import { fixed, yellow, alabaster, lightGrey, blue, white, transition } from '@/Utilities'
 import { Icon } from '@/Elements'
 
 const NavBase = styled.div`
-${fixed({})}
+  ${fixed({})}
   display: flex;
   width: 100%;
   height: 3rem;
@@ -23,10 +23,10 @@ const NavItem = styled(Link)`
   display: flex;
   text-align: center;
   align-items: center;
-  color: ${alabaster};
+  color: ${white};
   ${transition({ length: '0.2s' })}
   &:hover {
-    opacity: 0.8;
+    color: ${lightGrey};
   }
 `
 const NavSeperator = styled.div`
@@ -34,7 +34,7 @@ const NavSeperator = styled.div`
   height: 6px;
   border-radius: 50%;
   margin: 0 1rem;
-  background-color: ${alabaster};
+  background-color: ${white};
 `
 
 const LoginCell = styled.div`
@@ -60,9 +60,12 @@ export default class Nav extends Component {
           Latest
           <NavSeperator/>
         </NavItem>
+        <NavItem to="/popular">
+          Popular
+          <NavSeperator />
+        </NavItem>
         <NavItem to='/submit'>
           Submit
-          <NavSeperator />
         </NavItem>
         <LoginCell>
           {!this.props.user.loggedIn && (

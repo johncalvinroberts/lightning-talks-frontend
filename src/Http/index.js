@@ -62,6 +62,10 @@ class Http {
   createPost (data) {
     return this.fetch(`/api/posts`, data, POST)
   }
+  getPopularPosts () {
+    const { posts: { popularPage } } = store.getState()
+    return this.fetch(`/api/posts?sort=upvotes&page=${popularPage}`, {}, GET)
+  }
 
   // votes requests
   upvotePostBySlug (slug) {

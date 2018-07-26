@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AppRouter from './Router/Router'
+import AppRouter from './Router'
 import store from './Store'
 import { Provider } from 'react-redux'
 import { registerUser } from './Store/Actions'

@@ -1,4 +1,5 @@
 import Home from './Home'
+import Popular from './Popular'
 import Login from './Login'
 import Submit from './Submit'
 import Post from './Post'
@@ -7,6 +8,7 @@ import NotFound from './NotFound'
 
 export {
   Home,
+  Popular,
   Login,
   Submit,
   Post,
