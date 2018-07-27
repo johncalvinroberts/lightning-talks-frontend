@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Page, PageInner, Nav, VerticalFlex, Card, Icon, List, PostListItem } from '@/Elements'
+import { Page, PageInner, Nav, List, PostListItem } from '@/Elements'
 import { alabaster, white, elevation } from '@/Utilities'
 import formatRelative from 'date-fns/formatRelative'
 import { connect } from 'react-redux'
 import { fetchUserProfile } from '@/Store/Actions'
-import { format } from 'util'
 
 const ProfileCard = styled.div`
   padding: 1rem;

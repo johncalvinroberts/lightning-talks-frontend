@@ -70,10 +70,11 @@ export default function posts (state = {
     case SUBMIT_SUCCESS:
     // reset posts after submitting a post: user will want to see an update list of posts
       return {
-        ...state,
         submitting: false,
+        page: 1,
         posts: [],
-        popular: []
+        popular: [],
+        ...state
       }
     case SUBMIT_FAIL:
       return {

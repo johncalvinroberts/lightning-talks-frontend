@@ -78,5 +78,6 @@ export const submitRegistration = ({ username, password }) => {
 
 // logout
 export const logout = () => {
+  localStorage.removeItem('lightningToken')
   return { type: LOGOUT }
 }

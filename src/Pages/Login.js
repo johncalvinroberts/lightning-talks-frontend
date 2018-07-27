@@ -48,10 +48,11 @@ export default class Login extends Component {
   handleRegister = async (e) => {
     e.preventDefault()
     const payload = {
-      username: this.state.loginUsername,
-      password: this.state.loginPassword
+      username: this.state.registerUsername,
+      password: this.state.registerPassword
     }
     this.props.submitRegistration(payload)
+    this.checkForRedirect()
   }
 
   handleFormChange = (e) => {
