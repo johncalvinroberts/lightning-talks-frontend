@@ -57,7 +57,7 @@ const AuthorLink = styled(Link)`
 `
 const mapDispatchToProps = { upvotePost, removeUpvotePost }
 
-@connect(state => ({ upvotes: state.auth.userInfo.upvotes }), mapDispatchToProps)
+@connect(state => ({ upvotes: state.auth.userInfo && state.auth.userInfo.upvotes }), mapDispatchToProps)
 export default class PostListItem extends Component {
   state = { iconHovering: false, liked: false }
 

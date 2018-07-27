@@ -48,10 +48,10 @@ const LoginCell = styled.div`
   display: flex;
   justify-content: flex-end;  
 `
+const mapDispatchToProps = { logout }
 
 @connect(
-  state => ({ user: state.auth }),
-  dispatch => logout)
+  state => ({ user: state.auth }), mapDispatchToProps)
 @withRouter
 export default class Nav extends Component {
   render () {
@@ -77,8 +77,8 @@ export default class Nav extends Component {
             </NavItem>
           )}
           {this.props.user.loggedIn && (
-            <NavItem to='/profile'>
-              account <Icon name="account" color={alabaster} />
+            <NavItem to='/' onClick={this.props.logout}>
+              logout <Icon name="logout" color={alabaster} />
             </NavItem>
           )}
         </LoginCell>
