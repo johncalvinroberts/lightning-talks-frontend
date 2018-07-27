@@ -7,7 +7,9 @@ import {
   RECEIVE_SINGLE_POST,
   BEGIN_SUBMIT_POST,
   SUBMIT_SUCCESS,
-  SUBMIT_FAIL } from '../Types'
+  SUBMIT_FAIL,
+  ADD_UPVOTE_TO_POST,
+  REMOVE_UPVOTE_FROM_POST } from '../Types'
 
 export default function posts (state = {
   loading: true,
@@ -77,6 +79,27 @@ export default function posts (state = {
       return {
         ...state,
         submitting: false
+      }
+    case ADD_UPVOTE_TO_POST:
+      const newPosts = state.posts.map(post => {
+        if (post._id === action.id) {
+          post.upvotes = post.upvotes + 1
+        }
+        return post
+      })
+      return {
+        posts: newPosts,
+        ...state
+      }
+    case REMOVE_UPVOTE_FROM_POST:
+      const updatedPosts = state.posts.map(post => {
+        if (post._id === action.id) {
+          post.upvotes = post.upvotes - 1
+        }
+      })
+      return {
+        posts: updatedPosts,
+        ...state
       }
     default:
       return { ...state }

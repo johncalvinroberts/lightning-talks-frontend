@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import ListItem from './ListItem'
 import styled from 'styled-components'
 import { Icon } from '@/Elements'
-import { blue, white, yellow, black, transition } from '@/Utilities'
+import { blue, white, yellow, black, transition, textOverflow } from '@/Utilities'
 import distanceInWords from 'date-fns/distance_in_words'
+
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { upvotePost, removeUpvotePost } from '@/Store/Actions'
 
 const PostListItemParent = styled(ListItem)`
   position: relative;
@@ -31,6 +33,14 @@ const PostStats = styled.div`
   }
   span {
     margin: 0 10px;
+    @media (max-width: 700px) {
+      margin: 0 6px;
+      ${textOverflow}
+      max-width: 135px;
+      &:last-child {
+        max-width: 100px;
+      }
+    }    
   }
 `
 
@@ -45,7 +55,7 @@ const AuthorLink = styled(Link)`
     font-weight: bold;
   }
 `
-const mapDispatchToProps = { }
+const mapDispatchToProps = { upvotePost, removeUpvotePost }
 
 @connect(state => ({ upvotes: state.auth.userInfo.upvotes }), mapDispatchToProps)
 export default class PostListItem extends Component {
@@ -58,14 +68,20 @@ export default class PostListItem extends Component {
   }
 
   handleUpvote = (e) => {
-    console.log('handle toggle vote')
+    const liked = this.props.upvotes.includes(this.props.post._id)
+    if (!liked) {
+      this.props.upvotePost(this.props.post._id)
+    } else {
+      this.props.removeUpvotePost(this.props.post._id)
+    }
   }
 
   render () {
     const iconColor = this.state.liked ? yellow : this.state.iconHovering ? white : blue
     const iconDimension = this.state.iconHovering ? '16px' : '14px'
     const author = this.props.post._user
-    const liked = this.props.upvotes && this.props.upvotes.includes(this.props.post.slug)
+    const liked = this.props.upvotes && this.props.upvotes.includes(this.props.post._id)
+    console.log(liked)
     return (
       <PostListItemParent
         onMouseEnter={this.toggleHover}

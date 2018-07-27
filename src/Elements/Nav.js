@@ -28,6 +28,9 @@ const NavItem = styled(Link)`
   &:hover {
     color: ${lightGrey};
   }
+  @media (max-width: 700px) {
+    font-size: 14px;
+  }
 `
 const NavSeperator = styled.div`
   width: 6px;
@@ -35,6 +38,9 @@ const NavSeperator = styled.div`
   border-radius: 50%;
   margin: 0 1rem;
   background-color: ${white};
+  @media (max-width: 700px) {
+    margin: 0 0.5rem;
+  }  
 `
 
 const LoginCell = styled.div`
@@ -62,6 +68,7 @@ export default class Nav extends Component {
         </NavItem>
         <NavItem to='/submit'>
           Submit
+          <NavSeperator />
         </NavItem>
         <LoginCell>
           {!this.props.user.loggedIn && (

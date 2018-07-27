@@ -68,11 +68,11 @@ class Http {
   }
 
   // votes requests
-  upvotePostBySlug (slug) {
-    return this.fetch(`/api/posts/${slug}/upvote`, {}, POST)
+  upvotePostByPostId (id) {
+    return this.fetch(`/api/posts/${id}/upvote`, {}, POST)
   }
-  removeUpvoteBySlog (slug) {
-    return this.fetch(`/api/posts/${slug}/upvote`, {}, DELETE)
+  removeUpvoteByPostId (id) {
+    return this.fetch(`/api/posts/${id}/upvote`, {}, DELETE)
   }
 }
 export default new Http()

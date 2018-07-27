@@ -6,6 +6,7 @@ import Portal from './Portal'
 
 export * from './position'
 export * from './colors'
+export * from './text'
 
 export {
   Portal,

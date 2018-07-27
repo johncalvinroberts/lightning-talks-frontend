@@ -3,7 +3,9 @@ import { LOGIN,
   LOAD_DATA_FAILURE,
   RECEIVE_USER_INFO,
   BEGIN_AUTH_LOADING,
-  END_AUTH_LOADING } from '../Types'
+  END_AUTH_LOADING,
+  ADD_UPVOTE_TO_USER,
+  REMOVE_UPVOTE_FROM_USER } from '../Types'
 
 export default function authReducer (state = {
   userInfo: {},
@@ -41,6 +43,22 @@ export default function authReducer (state = {
       return {
         loading: false,
         ...state
+      }
+    case ADD_UPVOTE_TO_USER:
+      let newUserInfo = Object.assign({}, state.userInfo)
+      newUserInfo.upvotes = [...state.userInfo.upvotes, action.id]
+      return {
+        ...state,
+        userInfo: newUserInfo
+      }
+    case REMOVE_UPVOTE_FROM_USER:
+      let reduxdUserInfo = Object.assign({}, state.userInfo)
+      reduxdUserInfo.upvotes = reduxdUserInfo.upvotes.filter(item => {
+        return item !== action.id
+      })
+      return {
+        ...state,
+        userInfo: reduxdUserInfo
       }
     default:
       return state
