@@ -74,5 +74,10 @@ class Http {
   removeUpvoteByPostId (id) {
     return this.fetch(`/api/posts/${id}/upvote`, {}, DELETE)
   }
+
+  // user profile requests
+  fetchUserProfile (id) {
+    return this.fetch(`/api/users/${id}`)
+  }
 }
 export default new Http()

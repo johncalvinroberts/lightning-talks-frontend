@@ -1,7 +1,9 @@
-import { ADD_UPVOTE_TO_USER,
+import {
+  ADD_UPVOTE_TO_USER,
   ADD_UPVOTE_TO_POST,
   REMOVE_UPVOTE_FROM_USER,
   REMOVE_UPVOTE_FROM_POST } from '@/Store/Types'
+
 import http from '@/Http'
 
 const addUpvoteToUser = (id) => {

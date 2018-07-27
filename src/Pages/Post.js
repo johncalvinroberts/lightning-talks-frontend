@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import distanceInWords from 'date-fns/distance_in_words'
+import formatRelative from 'date-fns/formatRelative'
 import { hydrateSinglePost, upvotePost, removeUpvotePost } from '@/Store/Actions'
 import { Page, Nav, VerticalFlex, Card, HorizontalFlex, Icon } from '@/Elements'
 import { alabaster, elevation, absolute, transition, blue, white } from '@/Utilities'
@@ -136,10 +136,10 @@ export default class Post extends Component {
               post && (
                 <Fragment>
                   <PostStats>
-                    <span>created: {post && distanceInWords(new Date(), new Date(post.dateAdded))} ago</span>
+                    <span>created: {post && formatRelative(new Date(), new Date(post.dateAdded))} ago</span>
                     <span>submitted by:
                       {author && (
-                        <AuthorLink to={'profile/' + author._id}>
+                        <AuthorLink to={'../profile/' + author._id}>
                           {author.username}
                         </AuthorLink>
                       )}

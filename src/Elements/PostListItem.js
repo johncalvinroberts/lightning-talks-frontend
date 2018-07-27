@@ -3,9 +3,9 @@ import ListItem from './ListItem'
 import styled from 'styled-components'
 import { Icon } from '@/Elements'
 import { blue, white, yellow, black, transition, textOverflow } from '@/Utilities'
-import distanceInWords from 'date-fns/distance_in_words'
+import formatDistance from 'date-fns/formatDistance'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { upvotePost, removeUpvotePost } from '@/Store/Actions'
 
@@ -58,6 +58,7 @@ const AuthorLink = styled(Link)`
 const mapDispatchToProps = { upvotePost, removeUpvotePost }
 
 @connect(state => ({ upvotes: state.auth.userInfo && state.auth.userInfo.upvotes }), mapDispatchToProps)
+@withRouter
 export default class PostListItem extends Component {
   state = { iconHovering: false, liked: false }
 
@@ -81,7 +82,8 @@ export default class PostListItem extends Component {
     const iconDimension = this.state.iconHovering ? '16px' : '14px'
     const author = this.props.post._user
     const liked = this.props.upvotes && this.props.upvotes.includes(this.props.post._id)
-    console.log(liked)
+    const isFromProfilePage = this.props.match.path.startsWith('/profile')
+    const linkPath = isFromProfilePage ? '../post/' : 'post/'
     return (
       <PostListItemParent
         onMouseEnter={this.toggleHover}
@@ -92,7 +94,7 @@ export default class PostListItem extends Component {
           style={{ cursor: 'pointer' }}
           onClick={this.handleUpvote}
         />
-        <PostTitle to={'post/' + this.props.post.slug}>
+        <PostTitle to={linkPath + this.props.post.slug}>
           <Rank>
             {this.props.rank}.
           </Rank>
@@ -100,12 +102,14 @@ export default class PostListItem extends Component {
         </PostTitle>
         <PostStats>
           <span>upvotes: {this.props.post.upvotes}</span>
-          <span>created: {distanceInWords(new Date(), new Date(this.props.post.dateAdded))} ago</span>
-          <span>submitted by:
-            <AuthorLink to={'profile/' + author._id}>
-              {author.username}
-            </AuthorLink>
-          </span>
+          <span>created: {formatDistance(new Date(), new Date(this.props.post.dateAdded))} ago</span>
+          {author && author.username && (
+            <span>submitted by:
+              <AuthorLink to={'/profile/' + author._id}>
+                {author.username}
+              </AuthorLink>
+            </span>
+          )}
 
         </PostStats>
       </PostListItemParent>

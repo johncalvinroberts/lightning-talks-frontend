@@ -1,0 +1,2 @@
+export const BEGIN_FETCH_USER = 'BEGIN_FETCH_USER'
+export const APPEND_USER = 'APPEND_USER'

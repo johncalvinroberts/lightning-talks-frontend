@@ -8,12 +8,11 @@ export default class AppRouter extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/popular" component={Popular} />
-          <Route path="/post/:slug" component={Post} />
-          <Route path="/submit" component={Submit} />
-          <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/profile/:slug" component={Profile} />
+          <Route exact path="/popular" component={Popular} />
+          <Route exact path="/post/:slug" component={Post} />
+          <Route exact path="/submit" component={Submit} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/profile/:id" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </Router>
