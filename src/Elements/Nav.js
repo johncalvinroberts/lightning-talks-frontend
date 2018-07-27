@@ -48,10 +48,6 @@ const LoginCell = styled.div`
   dispatch => logout)
 @withRouter
 export default class Nav extends Component {
-  handleLogout = () => {
-    return logout()
-  }
-
   render () {
     return (
       <NavBase>
@@ -74,7 +70,7 @@ export default class Nav extends Component {
             </NavItem>
           )}
           {this.props.user.loggedIn && (
-            <NavItem onClick={ this.handleLogout } to='/profile'>
+            <NavItem to='/profile'>
               account <Icon name="account" color={alabaster} />
             </NavItem>
           )}

@@ -1,4 +1,5 @@
 import http from '@/Http'
+import store from '@/Store/index'
 import {
   BEGIN_FETCH_POSTS,
   APPEND_POSTS,
@@ -22,15 +23,21 @@ const beginFetchSinglePost = (slug) => {
   return { type: BEGIN_FETCH_SINGLE_POST, slug }
 }
 
-const receiveSinglePost = (slug) => {
-  return { type: RECEIVE_SINGLE_POST, slug }
+const receiveSinglePost = (postDetail) => {
+  return { type: RECEIVE_SINGLE_POST, postDetail }
 }
 
-export const getSinglePost = (slug) => {
+export const hydrateSinglePost = (slug) => {
   return async dispatch => {
-    dispatch(beginFetchSinglePost())
-    const postDetail = await http.getPostBySlug(slug)
-    dispatch(receiveSinglePost(postDetail))
+    // first check if full version of post is already in posts
+    const { posts: { posts } } = store.getState()
+    const existingPost = posts.find(post => post && post.slug === slug)
+    // check if it's a full post by seeing if it has namespace `content` on the post object
+    if (!existingPost || !existingPost.content) {
+      dispatch(beginFetchSinglePost())
+      const postDetail = await http.getPostBySlug(slug)
+      dispatch(receiveSinglePost(postDetail))
+    }
   }
 }
 

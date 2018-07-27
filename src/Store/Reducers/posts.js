@@ -44,19 +44,34 @@ export default function posts (state = {
         popular: [...state.popular, ...action.posts]
       }
     case BEGIN_FETCH_SINGLE_POST:
-    case RECEIVE_SINGLE_POST:
-    // TODO: append post detail to item in posts state here
       return { ...state }
+    case RECEIVE_SINGLE_POST:
+      const incomingPost = action.postDetail
+      const post = state.posts.find(post => post && post.slug === incomingPost.slug)
+      let posts = []
+      if (!post) {
+        posts = [...state.posts, incomingPost]
+      } else {
+        let copyOfPosts = Object.assign([], state.posts)
+        posts = copyOfPosts.map(post => {
+          return post && post.slug === incomingPost.slug ? incomingPost : post
+        })
+      }
+      return {
+        ...state,
+        posts }
     case BEGIN_SUBMIT_POST:
       return {
         ...state,
         submitting: true
       }
     case SUBMIT_SUCCESS:
+    // reset posts after submitting a post: user will want to see an update list of posts
       return {
         ...state,
         submitting: false,
-        posts: []
+        posts: [],
+        popular: []
       }
     case SUBMIT_FAIL:
       return {
