@@ -58,26 +58,14 @@ export default class PostListItem extends Component {
   }
 
   handleUpvote = (e) => {
-    if (this.state.liked) {
-      console.log('remove upvote')
-    } else {
-      console.log('upvote')
-    }
-  }
-
-  calculateLiked = () => {
-    const liked = this.props.upvotes && this.props.upvotes.includes(this.props.post.slug)
-    this.setState({ liked })
-  }
-
-  componentDidMount () {
-    this.calculateLiked()
+    console.log('handle toggle vote')
   }
 
   render () {
     const iconColor = this.state.liked ? yellow : this.state.iconHovering ? white : blue
     const iconDimension = this.state.iconHovering ? '16px' : '14px'
     const author = this.props.post._user
+    const liked = this.props.upvotes && this.props.upvotes.includes(this.props.post.slug)
     return (
       <PostListItemParent
         onMouseEnter={this.toggleHover}

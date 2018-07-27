@@ -9,11 +9,13 @@ import { submitLogin, submitRegistration } from '@/Store/Actions'
 const LoginHeader = styled.h1`
   color: ${white};
   text-align: center;
+  height: 2rem;
 `
 
 const LoginSubheader = styled.p`
   color: ${white};
   text-align: center;
+  height: 1rem;
 `
 const LoginCard = styled(Card)`
   display: block;
@@ -87,7 +89,7 @@ export default class Login extends Component {
         </Link>
         <LoginHeader>Lightning Talks</LoginHeader>
         <LoginSubheader>Pitch, preach, pretend</LoginSubheader>
-        <VerticalFlex height="auto" justifyContent="center">
+        <VerticalFlex minHeight="75vh" justifyContent="center">
           <div>
             <LoginCard>
               <FormTitle>Login</FormTitle>
