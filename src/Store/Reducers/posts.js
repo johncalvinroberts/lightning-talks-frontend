@@ -78,8 +78,8 @@ export default function posts (state = {
       }
     case SUBMIT_FAIL:
       return {
-        ...state,
-        submitting: false
+        submitting: false,
+        ...state
       }
     case ADD_UPVOTE_TO_POST:
       const newPosts = state.posts.map(post => {

@@ -4,7 +4,8 @@ import { LOGIN,
   LOAD_DATA_FAILURE,
   RECEIVE_USER_INFO,
   BEGIN_AUTH_LOADING,
-  END_AUTH_LOADING } from '../Types'
+  END_AUTH_LOADING,
+  INIT_GLOBAL_ERROR } from '../Types'
 
 // auth loading, can use on both registration and login pages
 const beginAuthLoading = () => {
@@ -58,7 +59,8 @@ export const submitLogin = ({ username, password }) => {
       dispatch(login())
       dispatch(fetchProfile())
     } catch (error) {
-      dispatch({ type: LOAD_DATA_FAILURE, error })
+      dispatch({ type: LOAD_DATA_FAILURE })
+      dispatch({ type: INIT_GLOBAL_ERROR, error })
     }
   }
 }
@@ -72,6 +74,7 @@ export const submitRegistration = ({ username, password }) => {
       dispatch(endAuthLoading())
     } catch (error) {
       dispatch({ type: LOAD_DATA_FAILURE })
+      dispatch({ type: INIT_GLOBAL_ERROR, error })
     }
   }
 }

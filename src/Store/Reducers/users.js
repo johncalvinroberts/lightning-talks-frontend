@@ -13,6 +13,7 @@ export default function users (state = {
     case APPEND_USER:
       const users = [...state.users, action.payload]
       return {
+        ...state,
         users,
         loading: false
       }

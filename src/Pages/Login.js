@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Page, Card, VerticalFlex, Icon, Form, FormTitle, SubmitButton } from '@/Elements'
 import { blue, yellow, white } from '@/Utilities'
 import styled from 'styled-components'
-import { Link, withRouter, Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { submitLogin, submitRegistration } from '@/Store/Actions'
 
@@ -25,7 +25,6 @@ const LoginCard = styled(Card)`
 const mapDispatchToProps = { submitLogin, submitRegistration }
 
 @connect(state => ({ user: state.auth }), mapDispatchToProps)
-@withRouter
 export default class Login extends Component {
   state = {
     loginUsername: null,

@@ -9,7 +9,8 @@ import {
   APPEND_POPULAR,
   BEGIN_SUBMIT_POST,
   SUBMIT_SUCCESS,
-  SUBMIT_FAIL } from '../Types'
+  SUBMIT_FAIL,
+  INIT_GLOBAL_ERROR } from '../Types'
 
 const beginFetch = () => {
   return { type: BEGIN_FETCH_POSTS }
@@ -34,18 +35,26 @@ export const hydrateSinglePost = (slug) => {
     const existingPost = posts.find(post => post && post.slug === slug)
     // check if it's a full post by seeing if it has namespace `content` on the post object
     if (!existingPost || !existingPost.content) {
-      dispatch(beginFetchSinglePost())
-      const postDetail = await http.getPostBySlug(slug)
-      dispatch(receiveSinglePost(postDetail))
+      try {
+        dispatch(beginFetchSinglePost())
+        const postDetail = await http.getPostBySlug(slug)
+        dispatch(receiveSinglePost(postDetail))
+      } catch (error) {
+        dispatch({ type: INIT_GLOBAL_ERROR, error })
+      }
     }
   }
 }
 
 export const getPosts = () => {
   return async dispatch => {
-    dispatch(beginFetch())
-    const { posts } = await http.getPosts()
-    dispatch(appendPosts(posts))
+    try {
+      dispatch(beginFetch())
+      const { posts } = await http.getPosts()
+      dispatch(appendPosts(posts))
+    } catch (error) {
+      dispatch({ type: INIT_GLOBAL_ERROR, error })
+    }
   }
 }
 // popular posts
@@ -60,9 +69,13 @@ const appendPopular = (posts) => {
 
 export const getPopularPosts = () => {
   return async dispatch => {
-    dispatch(beginFetchPopular())
-    const { posts } = await http.getPopularPosts()
-    dispatch(appendPopular(posts))
+    try {
+      dispatch(beginFetchPopular())
+      const { posts } = await http.getPopularPosts()
+      dispatch(appendPopular(posts))
+    } catch (error) {
+      dispatch({ type: INIT_GLOBAL_ERROR, error })
+    }
   }
 }
 
@@ -88,6 +101,7 @@ export const submitPost = (payload) => {
       dispatch(getPosts())
     } catch (error) {
       dispatch(submitFail())
+      dispatch({ type: INIT_GLOBAL_ERROR, error })
     }
   }
 }
