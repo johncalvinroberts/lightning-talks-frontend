@@ -98,7 +98,6 @@ export const submitPost = (payload) => {
     try {
       await http.createPost({ post: payload })
       dispatch(submitSuccess())
-      dispatch(getPosts())
     } catch (error) {
       dispatch(submitFail())
       dispatch({ type: PUSH_GLOBAL_ERROR, error })
