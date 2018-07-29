@@ -27,7 +27,7 @@ const ListItemParent = styled.div`
 `
 
 const ListItemInner = styled.div`
-  z-index:999;
+  z-index:9;
   position: relative;
   display: flex;
   flex-wrap: wrap;

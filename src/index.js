@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import AppRouter from './Router'
 import store from './Store'
 import { Provider } from 'react-redux'
 import { registerUser } from './Store/Actions'
 import { black } from '@/Utilities'
+import { ErrorModal } from '@/Elements'
 // fetch polyfill
 import 'whatwg-fetch'
 import { injectGlobal } from 'styled-components'
@@ -38,6 +39,9 @@ injectGlobal`
 // mount the react app via the router
 ReactDOM.render(
   <Provider store={store}>
-    <AppRouter />
+    <Fragment>
+      <AppRouter />
+      <ErrorModal />
+    </Fragment>
   </Provider>,
   document.getElementById('app'))

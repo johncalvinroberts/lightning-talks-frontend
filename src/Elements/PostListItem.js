@@ -11,7 +11,7 @@ import { upvotePost, removeUpvotePost } from '@/Store/Actions'
 
 const PostListItemParent = styled(ListItem)`
   position: relative;
-  z-index:99999;
+  z-index:9;
 `
 const PostTitle = styled(Link)`
   flex: 1;

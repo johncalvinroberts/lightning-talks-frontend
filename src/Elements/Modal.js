@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Portal, black, absolute } from '@/Utilities'
-import Icon from './Icon'
 import { Card } from './Cards'
 const ModalWrapper = styled.div`
   ${absolute({})}
@@ -12,12 +11,6 @@ const ModalWrapper = styled.div`
   align-items: center;
 `
 
-const CloseButton = styled.button`
-  ${absolute({ x: 'right' })}
-  border: 0;
-  background-color: transparent;
-  padding: 4px;
-`
 const Mask = styled.div`
   ${absolute({})}
   height: 100%;
@@ -41,9 +34,6 @@ export default class Modal extends Component {
         {on && (
           <ModalWrapper>
             <ModalCard>
-              <CloseButton onClick={toggle}>
-                <Icon name="close" />
-              </CloseButton>
               <div>
                 {children}
               </div>

@@ -10,7 +10,7 @@ import {
   BEGIN_SUBMIT_POST,
   SUBMIT_SUCCESS,
   SUBMIT_FAIL,
-  INIT_GLOBAL_ERROR } from '../Types'
+  PUSH_GLOBAL_ERROR } from '../Types'
 
 const beginFetch = () => {
   return { type: BEGIN_FETCH_POSTS }
@@ -40,7 +40,7 @@ export const hydrateSinglePost = (slug) => {
         const postDetail = await http.getPostBySlug(slug)
         dispatch(receiveSinglePost(postDetail))
       } catch (error) {
-        dispatch({ type: INIT_GLOBAL_ERROR, error })
+        dispatch({ type: PUSH_GLOBAL_ERROR, error })
       }
     }
   }
@@ -53,7 +53,7 @@ export const getPosts = () => {
       const { posts } = await http.getPosts()
       dispatch(appendPosts(posts))
     } catch (error) {
-      dispatch({ type: INIT_GLOBAL_ERROR, error })
+      dispatch({ type: PUSH_GLOBAL_ERROR, error })
     }
   }
 }
@@ -74,7 +74,7 @@ export const getPopularPosts = () => {
       const { posts } = await http.getPopularPosts()
       dispatch(appendPopular(posts))
     } catch (error) {
-      dispatch({ type: INIT_GLOBAL_ERROR, error })
+      dispatch({ type: PUSH_GLOBAL_ERROR, error })
     }
   }
 }
@@ -101,7 +101,7 @@ export const submitPost = (payload) => {
       dispatch(getPosts())
     } catch (error) {
       dispatch(submitFail())
-      dispatch({ type: INIT_GLOBAL_ERROR, error })
+      dispatch({ type: PUSH_GLOBAL_ERROR, error })
     }
   }
 }

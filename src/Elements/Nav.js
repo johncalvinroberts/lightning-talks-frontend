@@ -11,7 +11,7 @@ const NavBase = styled.div`
   display: flex;
   width: 100%;
   height: 3rem;
-  z-index: 1000;
+  z-index: 9;
   padding: 0 0.3rem;
   background-color: ${blue};
 `

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { darkGrey, blue, white, transition } from '@/Utilities'
+import { darkGrey, blue, red, white, transition } from '@/Utilities'
 
 export const SubmitButton = styled.button`
   ${transition({ length: '0.2s' })}
@@ -17,6 +17,13 @@ export const SubmitButton = styled.button`
     border-width: 2px;
   }
 `
+export const ErrorButton = styled(SubmitButton)`
+  border-color: ${red};
+  &:hover {
+    box-shadow: 2px 2px 0 ${red};
+  }
+`
+
 export const ScrollButton = styled(SubmitButton)`
   background-color: ${blue};
   color: ${white};
