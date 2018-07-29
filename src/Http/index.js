@@ -7,7 +7,8 @@ const DELETE = 'DELETE'
 class Http {
   constructor () {
     this.defaultHeader = { 'Content-Type': 'application/json' }
-    this.baseUrl = 'http://localhost:3005'
+    // this.baseUrl =  'http://localhost:3005'
+    this.baseUrl = 'https://lightning-talks-backend-pnzaypfiqf.now.sh/'
   }
 
   setToken (token) {
