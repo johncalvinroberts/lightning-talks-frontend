@@ -43,6 +43,8 @@ export const fetchProfile = () => {
       dispatch(endAuthLoading())
       dispatch(receiveUserInfo(userInfo))
     } catch (error) {
+      dispatch(logout())
+      dispatch({ type: PUSH_GLOBAL_ERROR, error })
       dispatch({ type: LOAD_DATA_FAILURE, error })
     }
   }
