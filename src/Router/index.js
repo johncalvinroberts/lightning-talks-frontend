@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Home, Popular, Post, Submit, Login, Profile, NotFound } from '@/pages'
+import { Home, Popular, Post, Submit, Login, Profile, NotFound } from '@/Pages'
 
 export default class AppRouter extends Component {
   render () {

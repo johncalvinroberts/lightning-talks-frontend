@@ -8,7 +8,8 @@ class Http {
   constructor () {
     this.defaultHeader = { 'Content-Type': 'application/json' }
     // this.baseUrl =  'http://localhost:3005'
-    this.baseUrl = 'https://lightning-talks-backend-pnzaypfiqf.now.sh/'
+    // const prod = process.env.NODE_ENV === 'production' // <-- will get transpiled in build
+    this.baseUrl = 'https://lightning-talks-backend-mjkbxlaidz.now.sh'
   }
 
   setToken (token) {

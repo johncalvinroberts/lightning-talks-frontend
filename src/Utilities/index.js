@@ -1,7 +1,7 @@
 import elevation from './elevation'
 import transition from './transition'
 import colors from './colors'
-import Toggle from './toggle'
+import Toggle from './Toggle'
 import Portal from './Portal'
 
 export * from './position'
